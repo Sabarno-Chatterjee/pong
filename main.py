@@ -25,5 +25,10 @@ while is_game_on:
     ball.ball_movement()
     screen.update()
     time.sleep(0.1)
+    # Detects collision with top or bottom wall:
+    if ball.ycor() > 300 or ball.ycor() < -300:
+        print("Numbnuts")
+        # need to bounce
+        ball.bounce()
 
 screen.exitonclick()
