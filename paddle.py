@@ -14,7 +14,13 @@ class Paddle(Turtle):
     def starting_position(self, x_position, y_position):
         self.goto(x=x_position,y=y_position)
 
+    def move_up(self):
 
+        y_position = self.ycor() + 20
+        self.goto(x=self.xcor(), y=y_position)
 
+    def move_down(self):
 
+        y_position = self.ycor() - 20
+        self.goto(x=self.xcor(),y=y_position)
 
