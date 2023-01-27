@@ -57,19 +57,26 @@
 import pygame
 
 
+pygame.init()
 # Game constants
 WIDTH = 1000
 HEIGHT = 600
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
+
+# Credits:
+# Icon: <a href="https://www.flaticon.com/free-icons/ping-pong" title="ping pong icons">Ping pong icons created by Freepik - Flaticon</a>
 # Design of screen:
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Pong")
 
-
+# Icon:
+icon = pygame.image.load("icon.png")
+pygame.display.set_icon(icon)
 running = True
 while running:
-
+    screen.fill(BLACK)
     for event in pygame.event.get():
         if event == pygame.QUIT:
             running = False
-
-
