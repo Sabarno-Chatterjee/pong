@@ -82,6 +82,8 @@ paddle1_y_change = 0
 paddle2_y_change = 0
 game_ball_X = 492
 game_ball_Y = 292
+game_ball_X_change = 4
+game_ball_Y_change = -4
 
 # Background image:
 backgroundImg = pygame.image.load("board.png")
@@ -90,13 +92,14 @@ ballImg = pygame.image.load("ball.png")
 
 
 def paddle(x, y):
-    # pygame.draw.rect(screen, WHITE, [x, y, 20, 20])
-    # pygame.Rect(30, 30, 60, 60)
     pygame.draw.rect(screen, WHITE, pygame.Rect(x, y, 10, 120), 5, 5, 5, 5)
 
 
 def game_ball(x, y):
     screen.blit(ballImg, (x, y))
+
+
+# def game_ball_movement():
 
 
 running = True
@@ -133,9 +136,15 @@ while running:
             if event.key == pygame.K_s:
                 paddle2_y_change = 0
 
+    # Paddle movements:
     paddle1_y += paddle1_y_change
     paddle2_y += paddle2_y_change
 
+    # Game ball movements:
+    game_ball_X += game_ball_X_change
+    game_ball_Y += game_ball_Y_change
+    if game_ball_Y <= 0 or game_ball_Y >= 588:
+        game_ball_Y_change = game_ball_Y_change * -1
     # Paddle1 position:
     if paddle1_y >= 480:
         paddle1_y = 480
