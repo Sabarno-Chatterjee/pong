@@ -55,7 +55,7 @@
 # screen.exitonclick()
 
 import pygame
-
+import time
 
 pygame.init()
 # Game constants
@@ -63,8 +63,8 @@ WIDTH = 1000
 HEIGHT = 600
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-
-
+fps = 60
+timer = pygame.time.Clock()
 # Credits:
 # Icon: <a href="https://www.flaticon.com/free-icons/ping-pong" title="ping pong icons">Ping pong icons created by Freepik - Flaticon</a>
 # Design of screen:
@@ -74,9 +74,52 @@ pygame.display.set_caption("Pong")
 # Icon:
 icon = pygame.image.load("icon.png")
 pygame.display.set_icon(icon)
+
+# Game variables:
+paddle1_y = 250
+paddle2_y = 250
+paddle1_y_change = 0
+paddle2_y_change = 0
+
+
+def paddle(x, y):
+    pygame.draw.rect(screen, WHITE, [x, y, 20, 20])
+
+
 running = True
 while running:
+    timer.tick(fps)
     screen.fill(BLACK)
+
+    paddle1 = paddle(950, paddle1_y)
+    paddle2 = paddle(30, paddle2_y)
+
     for event in pygame.event.get():
         if event == pygame.QUIT:
             running = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                paddle1_y_change -= 5
+            if event.key == pygame.K_DOWN:
+                paddle1_y_change += 5
+            if event.key == pygame.K_w:
+                paddle2_y_change -= 5
+            if event.key == pygame.K_s:
+                paddle2_y_change += 5
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                paddle1_y_change = 0
+            if event.key == pygame.K_DOWN:
+                paddle1_y_change = 0
+            if event.key == pygame.K_w:
+                paddle2_y_change = 0
+            if event.key == pygame.K_s:
+                paddle2_y_change = 0
+
+    paddle1_y += paddle1_y_change
+    paddle2_y += paddle2_y_change
+
+    pygame.display.flip()
+pygame.quit()
