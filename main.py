@@ -83,7 +83,9 @@ paddle2_y_change = 0
 
 
 def paddle(x, y):
-    pygame.draw.rect(screen, WHITE, [x, y, 20, 20])
+    # pygame.draw.rect(screen, WHITE, [x, y, 20, 20])
+    # pygame.Rect(30, 30, 60, 60)
+    pygame.draw.rect(screen, WHITE, pygame.Rect(x, y, 20, 120))
 
 
 running = True
