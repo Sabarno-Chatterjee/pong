@@ -66,7 +66,7 @@ BLACK = (0, 0, 0)
 fps = 60
 timer = pygame.time.Clock()
 # Credits:
-# Icon: <a href="https://www.flaticon.com/free-icons/ping-pong" title="ping pong icons">Ping pong icons created by Freepik - Flaticon</a>
+#
 # Design of screen:
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pong")
@@ -81,6 +81,8 @@ paddle2_y = 250
 paddle1_y_change = 0
 paddle2_y_change = 0
 
+# Background image:
+backgroundImg = pygame.image.load("board.png")
 
 def paddle(x, y):
     # pygame.draw.rect(screen, WHITE, [x, y, 20, 20])
@@ -92,6 +94,7 @@ running = True
 while running:
     timer.tick(fps)
     screen.fill(BLACK)
+    screen.blit(backgroundImg,(0,0))
 
     paddle1 = paddle(950, paddle1_y)
     paddle2 = paddle(30, paddle2_y)
@@ -134,7 +137,6 @@ while running:
         paddle2_y = 480
     elif paddle2_y <= 0:
         paddle2_y = 0
-
 
     pygame.display.flip()
 pygame.quit()
