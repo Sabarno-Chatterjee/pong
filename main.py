@@ -80,24 +80,34 @@ paddle1_y = 250
 paddle2_y = 250
 paddle1_y_change = 0
 paddle2_y_change = 0
+game_ball_X = 492
+game_ball_Y = 292
 
 # Background image:
 backgroundImg = pygame.image.load("board.png")
+# Ball image:
+ballImg = pygame.image.load("ball.png")
+
 
 def paddle(x, y):
     # pygame.draw.rect(screen, WHITE, [x, y, 20, 20])
     # pygame.Rect(30, 30, 60, 60)
-    pygame.draw.rect(screen, WHITE, pygame.Rect(x, y, 20, 120))
+    pygame.draw.rect(screen, WHITE, pygame.Rect(x, y, 10, 120), 5, 5, 5, 5)
+
+
+def game_ball(x, y):
+    screen.blit(ballImg, (x, y))
 
 
 running = True
 while running:
     timer.tick(fps)
     screen.fill(BLACK)
-    screen.blit(backgroundImg,(0,0))
+    screen.blit(backgroundImg, (0, 0))
 
     paddle1 = paddle(950, paddle1_y)
     paddle2 = paddle(30, paddle2_y)
+    ball = game_ball(game_ball_X, game_ball_Y)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
