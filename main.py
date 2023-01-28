@@ -97,7 +97,7 @@ while running:
     paddle2 = paddle(30, paddle2_y)
 
     for event in pygame.event.get():
-        if event == pygame.QUIT:
+        if event.type == pygame.QUIT:
             running = False
 
         if event.type == pygame.KEYDOWN:
@@ -122,6 +122,19 @@ while running:
 
     paddle1_y += paddle1_y_change
     paddle2_y += paddle2_y_change
+
+    # Paddle1 position:
+    if paddle1_y >= 480:
+        paddle1_y = 480
+    elif paddle1_y <= 0:
+        paddle1_y = 0
+
+    # Paddle2 position:
+    if paddle2_y >= 480:
+        paddle2_y = 480
+    elif paddle2_y <= 0:
+        paddle2_y = 0
+
 
     pygame.display.flip()
 pygame.quit()
