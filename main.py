@@ -55,7 +55,7 @@
 # screen.exitonclick()
 
 import pygame
-import time
+import math
 
 pygame.init()
 # Game constants
@@ -78,12 +78,14 @@ pygame.display.set_icon(icon)
 # Game variables:
 paddle1_y = 250
 paddle2_y = 250
+paddle1_x = 950
+paddle2_x = 30
 paddle1_y_change = 0
 paddle2_y_change = 0
 game_ball_X = 492
 game_ball_Y = 292
-game_ball_X_change = 4
-game_ball_Y_change = -4
+game_ball_X_change = -4
+game_ball_Y_change = 4
 
 # Background image:
 backgroundImg = pygame.image.load("board.png")
@@ -91,15 +93,10 @@ backgroundImg = pygame.image.load("board.png")
 ballImg = pygame.image.load("ball.png")
 
 
-def paddle(x, y):
-    pygame.draw.rect(screen, WHITE, pygame.Rect(x, y, 10, 120), 5, 5, 5, 5)
 
 
-def game_ball(x, y):
-    screen.blit(ballImg, (x, y))
-
-
-# def game_ball_movement():
+def distance(ball_x, ball_y, paddles_x, paddles_y):
+    return (math.sqrt(math.pow(ball_x - paddles_x, 2) + math.pow(ball_y - paddles_y, 2)))
 
 
 running = True
@@ -108,9 +105,10 @@ while running:
     screen.fill(BLACK)
     screen.blit(backgroundImg, (0, 0))
 
-    paddle1 = paddle(950, paddle1_y)
-    paddle2 = paddle(30, paddle2_y)
-    ball = game_ball(game_ball_X, game_ball_Y)
+
+    paddle1 = pygame.draw.rect(screen, WHITE, pygame.Rect(paddle1_x, paddle1_y, 10, 120), 5, 5, 5, 5)
+    paddle2 = pygame.draw.rect(screen, WHITE, pygame.Rect(paddle2_x, paddle2_y, 10, 120), 5, 5, 5, 5)
+    screen.blit(ballImg, (game_ball_X, game_ball_Y))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -143,14 +141,27 @@ while running:
     # Game ball movements:
     game_ball_X += game_ball_X_change
     game_ball_Y += game_ball_Y_change
-    if game_ball_Y <= 0 or game_ball_Y >= 588:
+    if game_ball_Y <= 12 or game_ball_Y >= 588:
         game_ball_Y_change = game_ball_Y_change * -1
-    # Paddle1 position:
+    elif game_ball_X <= 12 or game_ball_X >= 988:
+        game_ball_Y = 292
+        game_ball_X = 492
+        game_ball_X_change = game_ball_X_change * -1
+
+    # Collision with paddles:
+
+    collision1 = distance(game_ball_X, game_ball_Y, paddle1_x, paddle1_y)
+    if collision1 < 100 and game_ball_X > 925:
+        game_ball_X_change = game_ball_X_change * -1
+
+    collision2 = distance(game_ball_X, game_ball_Y, paddle2_x, paddle2_y)
+    if collision2 < 100 and game_ball_X < 45:
+        game_ball_X_change = game_ball_X_change * -1
+
     if paddle1_y >= 480:
         paddle1_y = 480
     elif paddle1_y <= 0:
         paddle1_y = 0
-
     # Paddle2 position:
     if paddle2_y >= 480:
         paddle2_y = 480
