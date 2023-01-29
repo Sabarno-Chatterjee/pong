@@ -86,6 +86,9 @@ game_ball_X = 492
 game_ball_Y = 292
 game_ball_X_change = -4
 game_ball_Y_change = 4
+paddle1_score = 0
+paddle2_score = 0
+font = pygame.font.Font('freesansbold.ttf', 50)
 
 # Background image:
 backgroundImg = pygame.image.load("board.png")
@@ -93,10 +96,8 @@ backgroundImg = pygame.image.load("board.png")
 ballImg = pygame.image.load("ball.png")
 
 
-
-
 def distance(ball_x, ball_y, paddles_x, paddles_y):
-    return (math.sqrt(math.pow(ball_x - paddles_x, 2) + math.pow(ball_y - paddles_y, 2)))
+    return math.sqrt(math.pow(ball_x - paddles_x, 2) + math.pow(ball_y - paddles_y, 2))
 
 
 running = True
@@ -105,10 +106,13 @@ while running:
     screen.fill(BLACK)
     screen.blit(backgroundImg, (0, 0))
 
-
     paddle1 = pygame.draw.rect(screen, WHITE, pygame.Rect(paddle1_x, paddle1_y, 10, 120), 5, 5, 5, 5)
     paddle2 = pygame.draw.rect(screen, WHITE, pygame.Rect(paddle2_x, paddle2_y, 10, 120), 5, 5, 5, 5)
     screen.blit(ballImg, (game_ball_X, game_ball_Y))
+    score1 = font.render(str(paddle1_score), True, WHITE)
+    screen.blit(score1, (700, 30))
+    score2 = font.render(str(paddle2_score), True, WHITE)
+    screen.blit(score2, (300, 30))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -143,7 +147,13 @@ while running:
     game_ball_Y += game_ball_Y_change
     if game_ball_Y <= 12 or game_ball_Y >= 588:
         game_ball_Y_change = game_ball_Y_change * -1
-    elif game_ball_X <= 12 or game_ball_X >= 988:
+    elif game_ball_X <= 12:
+        paddle1_score += 1
+        game_ball_Y = 292
+        game_ball_X = 492
+        game_ball_X_change = game_ball_X_change * -1
+    elif game_ball_X >= 988:
+        paddle2_score += 1
         game_ball_Y = 292
         game_ball_X = 492
         game_ball_X_change = game_ball_X_change * -1
