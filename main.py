@@ -144,9 +144,6 @@ while running:
             if event.key == pygame.K_s:
                 paddle2_y_change = 0
 
-
-
-
     # Paddle movements:
     paddle1_y += paddle1_y_change
     paddle2_y += paddle2_y_change
@@ -176,7 +173,6 @@ while running:
         sound()
         game_ball_X_change = game_ball_X_change * -1.1
 
-
     collision2 = distance(game_ball_X, game_ball_Y, paddle2_x, paddle2_y)
     if collision2 < 100 and game_ball_X < 45:
         sound()
@@ -191,40 +187,41 @@ while running:
         paddle2_y = 480
     elif paddle2_y <= 0:
         paddle2_y = 0
-# Automation code:
-#     if game_ball_X < 500:
-#         if game_ball_Y > 300:
-#             if collision2 < 100:
-#                 paddle2_y_change = 5
-#             elif collision2 < 200:
-#                 paddle2_y_change = 5
-#             elif collision2 < 300:
-#                 paddle2_y_change = 8
-#             elif collision2 < 400:
-#                 paddle2_y_change = 10
-#             elif collision2 < 500:
-#                 paddle2_y_change = 10
-#             elif collision2 < 600:
-#                 paddle2_y_change = 13
-#             elif collision2 < 700:
-#                 paddle2_y_change = 15
-#
-#     if game_ball_X < 500:
-#         if game_ball_Y < 300:
-#             if collision2 < 100:
-#                 paddle2_y_change = -5
-#             elif collision2 < 200:
-#                 paddle2_y_change = -5
-#             elif collision2 < 300:
-#                 paddle2_y_change = -8
-#             elif collision2 < 400:
-#                 paddle2_y_change = -10
-#             elif collision2 < 500:
-#                 paddle2_y_change = -10
-#             elif collision2 < 600:
-#                 paddle2_y_change = -13
-#             elif collision2 < 700:
-#                 paddle2_y_change = -15
+    # Automation code:
+    #     if game_ball_X < 500:
+    #         if game_ball_Y > 300:
+    #             if collision2 < 100:
+    #                 paddle2_y_change = 5
+    #             elif collision2 < 200:
+    #                 paddle2_y_change = 5
+    #             elif collision2 < 300:
+    #                 paddle2_y_change = 8
+    #             elif collision2 < 400:
+    #                 paddle2_y_change = 10
+    #             elif collision2 < 500:
+    #                 paddle2_y_change = 10
+    #             elif collision2 < 600:
+    #                 paddle2_y_change = 13
+    #             elif collision2 < 700:
+    #                 paddle2_y_change = 15
+    #
+    #     if game_ball_X < 500:
+    #         if game_ball_Y < 300:
+    #             if collision2 < 100:
+    #                 paddle2_y_change = -5
+    #             elif collision2 < 200:
+    #                 paddle2_y_change = -5
+    #             elif collision2 < 300:
+    #                 paddle2_y_change = -8
+    #             elif collision2 < 400:
+    #                 paddle2_y_change = -10
+    #             elif collision2 < 500:
+    #                 paddle2_y_change = -10
+    #             elif collision2 < 600:
+    #                 paddle2_y_change = -13
+    #             elif collision2 < 700:
+    #                 paddle2_y_change = -15
+
     if game_ball_Y >= 0 and game_ball_Y <= 100:
         paddle2_y = 0
     elif game_ball_Y >= 100 and game_ball_Y <= 200:
