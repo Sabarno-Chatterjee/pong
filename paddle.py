@@ -18,5 +18,12 @@
 #     def move_down(self):
 #         y_position = self.ycor() - 20
 #         self.goto(x=self.xcor(), y=y_position)
-import pygame
+# import pygame
+# from main import screen
+#
+# pygame.init()
+#
+# WHITE = (255, 255, 255)
+
+
 

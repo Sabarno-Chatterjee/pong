@@ -56,6 +56,7 @@
 
 import pygame
 import math
+from pygame import mixer
 
 pygame.init()
 # Game constants
@@ -98,6 +99,11 @@ ballImg = pygame.image.load("ball.png")
 
 def distance(ball_x, ball_y, paddles_x, paddles_y):
     return math.sqrt(math.pow(ball_x - paddles_x, 2) + math.pow(ball_y - paddles_y, 2))
+
+
+def sound():
+    audio = mixer.Sound("bounce.wav")
+    audio.play()
 
 
 running = True
@@ -162,10 +168,12 @@ while running:
 
     collision1 = distance(game_ball_X, game_ball_Y, paddle1_x, paddle1_y)
     if collision1 < 100 and game_ball_X > 925:
+        sound()
         game_ball_X_change = game_ball_X_change * -1
 
     collision2 = distance(game_ball_X, game_ball_Y, paddle2_x, paddle2_y)
     if collision2 < 100 and game_ball_X < 45:
+        sound()
         game_ball_X_change = game_ball_X_change * -1
 
     if paddle1_y >= 480:
