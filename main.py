@@ -53,6 +53,7 @@
 #         scoreboard.r_point()
 #
 # screen.exitonclick()
+import random
 
 import pygame
 import math
@@ -188,18 +189,32 @@ while running:
     elif paddle2_y <= 0:
         paddle2_y = 0
     if game_ball_X < 700:
-        if game_ball_Y >= 0 and game_ball_Y <= 100:
-            paddle2_y = 0
-        elif game_ball_Y >= 100 and game_ball_Y <= 200:
-            paddle2_y = 120
-        elif game_ball_Y >= 200 and game_ball_Y <= 300:
-            paddle2_y = 220
-        elif game_ball_Y >= 300 and game_ball_Y <= 400:
-            paddle2_y = 320
-        elif game_ball_Y >= 400 and game_ball_Y <= 500:
-            paddle2_y = 420
-        elif game_ball_Y >= 500 and game_ball_Y <= 590:
-            paddle2_y = 480
+        if random.randint(0, 5) == 1:
+            if game_ball_Y >= 0 and game_ball_Y <= 100:
+                paddle2_y = 0
+            elif game_ball_Y >= 100 and game_ball_Y <= 200:
+                paddle2_y = 120
+            elif game_ball_Y >= 200 and game_ball_Y <= 300:
+                paddle2_y = 220
+            elif game_ball_Y >= 300 and game_ball_Y <= 400:
+                paddle2_y = 320
+            elif game_ball_Y >= 400 and game_ball_Y <= 500:
+                paddle2_y = 420
+            elif game_ball_Y >= 500 and game_ball_Y <= 590:
+                paddle2_y = 480
+    # if game_ball_X > 300:
+    #     if game_ball_Y >= 0 and game_ball_Y <= 100:
+    #         paddle1_y = 0
+    #     elif game_ball_Y >= 100 and game_ball_Y <= 200:
+    #         paddle1_y = 120
+    #     elif game_ball_Y >= 200 and game_ball_Y <= 300:
+    #         paddle1_y = 220
+    #     elif game_ball_Y >= 300 and game_ball_Y <= 400:
+    #         paddle1_y = 320
+    #     elif game_ball_Y >= 400 and game_ball_Y <= 500:
+    #         paddle1_y = 420
+    #     elif game_ball_Y >= 500 and game_ball_Y <= 590:
+    #         paddle1_y = 480
 
     if collision2 < 100 and game_ball_X < 45:
         sound()
